@@ -138,7 +138,7 @@ void ParseGo(char* in, SearchParams* params, Board* board, ThreadData* threads) 
       if (movesToGo == -1) {
         int total = max(1, time + 50 * inc - MOVE_OVERHEAD);
 
-        params->alloc = min(time * 0.33, total / 20.0);
+        params->alloc = min(time * 0.33, total / 17.5);
       } else {
         int total = max(1, time + movesToGo * inc - MOVE_OVERHEAD);
 
