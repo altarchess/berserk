@@ -416,8 +416,7 @@ int Negamax(int alpha, int beta, int depth, int cutnode, ThreadData* thread, PV*
     // Razoring
     if (depth <= 3 && eval + 200 * depth <= alpha) {
       score = Quiesce(alpha, beta, thread);
-      if (score <= alpha)
-        return score;
+      if (score <= alpha) return score;
     }
 
     // Null move pruning
@@ -706,7 +705,7 @@ int Quiesce(int alpha, int beta, ThreadData* thread) {
   InitTacticalMoves(&moves, data, eval <= alpha - DELTA_CUTOFF);
 
   while ((move = NextMove(&moves, board, 1))) {
-    if (moves.phase > PLAY_GOOD_TACTICAL) break;
+    if (moves.phase > PLAY_GOOD_TACTICAL && bestScore > -MATE_BOUND) break;
 
     data->moves[data->ply++] = move;
     MakeMove(move, board);
