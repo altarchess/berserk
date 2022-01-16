@@ -251,7 +251,7 @@ void* Search(void* arg) {
 
       int64_t bestMoveNodes = data->tm[FromTo(results->bestMoves[depth])];
       double pctNodesNotBest = 1.0 - (double)bestMoveNodes / data->nodes;
-      double nodeCountFactor = max(0.5, sqrt(pctNodesNotBest) * 2 + 0.4);
+      double nodeCountFactor = max(0.5, powf(pctNodesNotBest, 0.8) * 2 + 0.4);
 
       if (results->scores[depth] >= TB_WIN_BOUND) nodeCountFactor = 0.5;
 
