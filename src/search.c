@@ -918,6 +918,10 @@ int Quiesce(int alpha, int beta, int depth, ThreadData* thread, SearchStack* ss)
 
     legalMoves++;
 
+
+    if (IsCap(move) && SEE_VALUE[PieceType(board->squares[To(move)])] - SEE_VALUE[PieceType(Moving(move))] + eval > beta + 200)
+      return beta;
+
     if (bestScore > -TB_WIN_BOUND) {
       if (!inCheck && mp.phase != QS_PLAY_QUIET_CHECKS && futility <= alpha && !SEE(board, move, 1)) {
         bestScore = Max(bestScore, futility);
