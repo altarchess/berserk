@@ -919,7 +919,7 @@ int Quiesce(int alpha, int beta, int depth, ThreadData* thread, SearchStack* ss)
     legalMoves++;
 
 
-    if (IsCap(move) && SEE_VALUE[PieceType(board->squares[To(move)])] - SEE_VALUE[PieceType(Moving(move))] + eval > beta + 300)
+    if (IsCap(move) && SEE_VALUE[PieceType(board->squares[To(move)])] - SEE_VALUE[PieceType(Moving(move))] * 2 + eval > beta + 300)
       return beta;
 
     if (bestScore > -TB_WIN_BOUND) {
